@@ -14,18 +14,18 @@ public class CategoryService {
 	
 	@Autowired
 	private CategoryRepository repository;
-
+	
 	public List<Category> findAll(){
 		return repository.findAll();
 	}
 	
 	
-	public Optional<Category> findById(Long id){
+	public Category findById(Long id){
 		Optional<Category> obj = repository.findById(id);
-		return obj;
+		return obj.get();
 	}
 	
-	public Category create(Category category) {
+	public Category save(Category category) {
 		return repository.save(category);
 	}
 	
