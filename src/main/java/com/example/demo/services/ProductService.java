@@ -16,7 +16,7 @@ public class ProductService {
 	private ProductRepository repository;
 	
 	
-	private List<Product> findAll(){
+	public List<Product> findAll(){
 		return repository.findAll();
 	}
 	
@@ -25,7 +25,7 @@ public class ProductService {
 		return obj.get();
 	}
 
-	public Product create(Product product) {
+	public Product save(Product product) {
 		return repository.save(product); 
 	}
 	

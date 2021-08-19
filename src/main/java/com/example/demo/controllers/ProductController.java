@@ -15,20 +15,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.demo.entities.Category;
-import com.example.demo.services.CategoryService;
+import com.example.demo.entities.Product;
+import com.example.demo.services.ProductService;
 
 @RestController
-@RequestMapping("/categories")
-public class CategoryController {
+@RequestMapping("/products")
+public class ProductController {
 
 	@Autowired
-	private CategoryService categoryService;
+	private ProductService service;
 	
 	
 	@GetMapping
-	public ResponseEntity<List<Category>> findAll(){
-		List<Category> list = categoryService.findAll();
+	public ResponseEntity<List<Product>> findAll(){
+		List<Product> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
@@ -36,30 +36,30 @@ public class CategoryController {
 	
 	@GetMapping(path = {"/{id}"})
 	public ResponseEntity<?> findById(@PathVariable Long id){
-		Category list = categoryService.findById(id);
+		Product list = service.findById(id);
 		return ResponseEntity.ok().body(list);
 	}
 	
 
 	@PostMapping
-	public ResponseEntity<Category> create(@RequestBody Category category){
-		category = categoryService.save(category);
+	public ResponseEntity<Product> save(@RequestBody Product product ){
+		product = service.save(product);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("{/id}")
-				.buildAndExpand(category.getId()).toUri();
+				.buildAndExpand(product.getId()).toUri();
 		
-		return ResponseEntity.created(uri).body(category);
+		return ResponseEntity.created(uri).body(product);
 	}
 	
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Category> update(@RequestBody Category category, Long id){
-		category = categoryService.update(category, id);
-		return ResponseEntity.ok().body(category);
+	@RequestMapping(path  = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Product> update(@RequestBody Product product , @PathVariable Long id){
+		product = service.update(product, id);
+		return ResponseEntity.ok().body(product);
 	}
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id){
-		categoryService.delete(id);
+		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Category;
+import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.repositories.CategoryRepository;
 
 @Service
@@ -22,7 +23,7 @@ public class CategoryService {
 	
 	public Category findById(Long id){
 		Optional<Category> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow( () -> new ResourceNotFoundException(id) );
 	}
 	
 	public Category save(Category category) {

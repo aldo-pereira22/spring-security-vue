@@ -20,7 +20,7 @@ public class Product implements Serializable {
 	private Long id;
 	
 	private String name;
-	private Integer amanout;
+	private Integer amount;
 	private Double price;
 	
 	@ManyToOne
@@ -35,7 +35,7 @@ public class Product implements Serializable {
 		super();
 		this.id = id;
 		this.name = name;
-		this.amanout = amanout;
+		this.amount = amanout;
 		this.price = price;
 		this.category = category;
 	}
@@ -64,12 +64,12 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
-	public Integer getAmanout() {
-		return amanout;
+	public Integer getAmount() {
+		return amount;
 	}
 
-	public void setAmanout(Integer amanout) {
-		this.amanout = amanout;
+	public void setAmount(Integer amanout) {
+		this.amount = amanout;
 	}
 
 	public Double getPrice() {
