@@ -3,51 +3,58 @@ package com.example.demo.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.entities.Users;
 import com.example.demo.repositories.UsersRepository;
 
 @Service
 public class UsersService {
+	
+	@Autowired
+	private PasswordEncoder passwordEnconder;
+	
+	private String senhaHash;
 
+	@Bean
+	public BCryptPasswordEncoder bcryptedEncode() {
+		return new BCryptPasswordEncoder();
+	}
+	
 	@Autowired
 	private UsersRepository repository;
 	
 	
-	@GetMapping
 	public List<Users> findAll(){
 		return repository.findAll();
 	}
 	
 	
-	public ResponseEntity<?> findById(@PathVariable Long id){
+	public ResponseEntity<?> findById( Long id){
 		return repository.findById(id)
 				.map(response -> ResponseEntity.ok().body(response))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	@PostMapping
-	public Users save(@RequestBody Users users) {
-		return repository.save(users);
+
+	public Users save( Users user) {
+		this.senhaHash = passwordEnconder.encode(user.getPassword());
+		user.setPassword(this.senhaHash);
+		return repository.save(user);
 	}
 	
-	@RequestMapping( value = "{/id}", method = RequestMethod.PUT)
-	public Users update(@RequestBody Users users, @PathVariable Long id) {
+
+	public Users update( Users users,  Long id) {
 		users.setId(id);
 		return repository.save(users);
 	}
 	
-	@DeleteMapping
-	public ResponseEntity<?> delete(@PathVariable Long id){
+
+	public ResponseEntity<?> delete( Long id){
 		
 		repository.deleteById(id);
 		return null;
