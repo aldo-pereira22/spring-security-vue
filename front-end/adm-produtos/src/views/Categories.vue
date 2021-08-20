@@ -17,16 +17,25 @@
     </div>
       {{ contador }}
 
+      <hr>
+      <div class="produtos">
+        {{ products }}
+        <input v-model="produtos" type="text" name="" id="">
+        <button v-on:click="addProdutos(produtos)" class="btn btn-primary mt-4">+</button>
+      </div>
+
   </div>
 </template>
 
 <script>
 
 import axios from 'axios'
+import {mapActions, mapState} from 'vuex'
 export default {
   data(){
     return {
-      categories:{}
+      categories:{},
+      produtos: ''
     }
   },
   methods:{
@@ -41,7 +50,8 @@ export default {
     },
     minusCount(){
       this.$store.commit('decrements')
-    }
+    },
+    ...mapActions(['addProdutos'])
 
 
   },
@@ -51,7 +61,8 @@ export default {
   computed:{
     contador(){
       return this.$store.state.count
-    }
+    },
+    ...mapState(['count', 'products'])
   }
 
 }
@@ -83,6 +94,12 @@ export default {
   font-weight: 900;
   align-items: center;
   justify-content: center;
+}
+
+.produtos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 </style>

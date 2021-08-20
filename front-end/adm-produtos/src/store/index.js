@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    count:0
+    count:0,
+    products:[]
   },
   mutations: {
     increments(state){
@@ -13,9 +14,15 @@ export default new Vuex.Store({
     },
     decrements(state){
       state.count --;
+    },
+    addProducts(state, payload){
+      state.products.push(payload)
     }
   },
   actions: {
+    addProdutos(context, payload){
+      context.commit('addProducts', payload)
+    }
   },
   modules: {
   }
