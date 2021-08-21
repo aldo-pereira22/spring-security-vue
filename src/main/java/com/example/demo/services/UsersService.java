@@ -20,10 +20,6 @@ public class UsersService {
 	
 	private String senhaHash;
 
-	@Bean
-	public BCryptPasswordEncoder bcryptedEncode() {
-		return new BCryptPasswordEncoder();
-	}
 	
 	@Autowired
 	private UsersRepository repository;
