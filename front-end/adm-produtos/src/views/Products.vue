@@ -1,6 +1,7 @@
 <template>
 <div class="principal">
     <div class="principal">
+        {{products.products}}
         <h1>Products</h1>
 
         <div >
@@ -38,6 +39,7 @@
 
 <script>
 import dados from './../data/data.json'
+import {mapState, mapActions} from 'vuex'
 export default {
     data(){
         return{
@@ -45,9 +47,16 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['getProducts']),
         conversaoValor(valor){
             return 'R$ ' + valor.toFixed(2);
         }
+    },
+    computed:{
+        ...mapState(['products'])
+    },
+    created(){
+        this.getProducts();
     }
 
 }
