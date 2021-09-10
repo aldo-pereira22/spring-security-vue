@@ -36,23 +36,24 @@ public class JwtAuthenticateControllers {
 	
 	
 	@Autowired
-	private JwtuserDetailsService jwtUserDetailsSerice;
+	private JwtuserDetailsService jwtUserDetailsService;
 	
 	@CrossOrigin
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String createAuthenticateToken(@RequestBody Users user) {
+	public String createAuthenticateToken(@RequestBody Users authenticateRequest) {
 		
 		usuarios = repository.findAll();
 		
 		for(Users usuario : usuarios) {
-			if( usuario.getUsername().equals(user.getUsername())
-				&& passwordEncoder.matches(user.getPassword(), usuario.getPassword()) ) {
-				final UserDetails userDetails = jwtUserDetailsSerice.loadUserByUsername(user.getUsername());
+			System.out.println(usuario.getPassword());
+			if( usuario.getUsername().equals(authenticateRequest.getUsername())
+				&& passwordEncoder.matches(authenticateRequest.getPassword(), usuario.getPassword()) ) {
 				
-				this.token = jwtTokenUtil.generateToken(userDetails);
-				
+				final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(usuario.getUsername());
+				System.out.println(userDetails);
 			
-				
+				this.token = jwtTokenUtil.generateToken(userDetails);
+
 				return this.token;
 			}
 		}

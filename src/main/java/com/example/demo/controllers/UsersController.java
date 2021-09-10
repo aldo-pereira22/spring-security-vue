@@ -38,7 +38,7 @@ public class UsersController {
 	
 	@GetMapping(path = {"/{id}"})
 	public ResponseEntity<?> findById(@PathVariable Long id){
-		ResponseEntity list = service.findById(id);
+		ResponseEntity<?> list = service.findById(id);
 		return ResponseEntity.ok().body(list);
 	}
 	

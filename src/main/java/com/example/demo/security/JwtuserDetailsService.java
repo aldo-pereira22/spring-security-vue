@@ -23,8 +23,7 @@ public class JwtuserDetailsService implements UserDetailsService{
 	private List<Users> users = new ArrayList<>();
 	private String username;
 	private String password;
-	
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		setUsers(repository.findAll());
@@ -35,6 +34,7 @@ public class JwtuserDetailsService implements UserDetailsService{
 				this.password = usuario.getPassword();
 			}
 		}
+		
 		
 		return new User(this.username, this.password, new ArrayList<>());
 	}
