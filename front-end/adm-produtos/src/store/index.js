@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { store as products} from './../pages/products'
+import {store as categories} from './../pages/categories'
 Vue.use(Vuex)
 
 // export default new Vuex.Store({
@@ -28,11 +29,11 @@ Vue.use(Vuex)
 //   }
 // })
 
-const categories = {
-  state:{
-    categories:[]
-  }
-}
+// const categories = {
+//   state:{
+//     categories:[]
+//   }
+// }
 
 // const products = {
 //   state:{
