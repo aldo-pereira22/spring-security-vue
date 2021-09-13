@@ -1,0 +1,1 @@
+export {defautl as store} from './store'

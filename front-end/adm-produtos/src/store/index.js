@@ -1,8 +1,8 @@
-// import Vue from 'vue'
+import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 
-// Vue.use(Vuex)
+Vue.use(Vuex)
 
 // export default new Vuex.Store({
 //   state: {
@@ -46,7 +46,7 @@ const products = {
   },
   actions: {
     getProducts( {commit} ){
-      Axios.get('http://localhost:8081/products').then( resp => {
+      Axios.get('http://localhost:8080/products').then( resp => {
         console.log(resp.data)
         commit('getProductsM', resp.data)
       })
@@ -56,7 +56,7 @@ const products = {
   }
 
 }
-const store = new Vuex.store({
+const store = new Vuex.Store({
   modules: {
     categories,
     products
@@ -64,4 +64,4 @@ const store = new Vuex.store({
 })
 
 
-export default store
+export default store 

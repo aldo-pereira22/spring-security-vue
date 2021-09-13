@@ -1,5 +1,6 @@
 <template>
 <div class="principal">
+
     <div class="principal">
         {{products.products}}
         <h1>Products</h1>
@@ -18,7 +19,7 @@
             </ul>
         </div>
 
-                <div v-for="dado in dados" :key="dado.id">
+                <div v-for="dado in products.products" :key="dado.id">
             <ul>
 
 
@@ -38,12 +39,12 @@
 </template>
 
 <script>
-import dados from './../data/data.json'
+// import dados from './../data/data.json'
 import {mapState, mapActions} from 'vuex'
 export default {
     data(){
         return{
-            dados:dados
+            // dados:dados
         }
     },
     methods: {
