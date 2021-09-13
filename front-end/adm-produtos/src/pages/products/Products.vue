@@ -48,7 +48,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['getProducts']),
+        ...mapActions( 'products', ['getProducts']),
         conversaoValor(valor){
             return 'R$ ' + valor.toFixed(2);
         }
