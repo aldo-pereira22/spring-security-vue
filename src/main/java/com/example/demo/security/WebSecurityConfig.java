@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.POST, "/users", "/login").permitAll()
 		.antMatchers(HttpMethod.GET, "/products","/categories").permitAll()
 		.antMatchers(HttpMethod.POST, "/products", "/categories").permitAll()
+		.antMatchers(HttpMethod.DELETE, "/products", "/categories").permitAll()
 		.anyRequest().authenticated()
 		.and().cors() 
 		.and().exceptionHandling()
