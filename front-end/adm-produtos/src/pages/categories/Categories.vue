@@ -44,18 +44,19 @@ export default {
     //   })
     // },
 
-    addCount(){
-      this.$store.commit('increments')
-    },
-    minusCount(){
-      this.$store.commit('decrements')
-    },
-    ...mapActions(['addProdutos'])
-
+    // addCount(){
+    //   this.$store.commit('increments')
+    // },
+    // minusCount(){
+    //   this.$store.commit('decrements')
+    // },
+    // ...mapActions(['addProdutos'])
+   ...mapActions(['getCategories'])
 
   },
   created(){
-    this.getCategories();
+    // this.getCategories();
+      this.getCategories()
   },
   computed:{
 
