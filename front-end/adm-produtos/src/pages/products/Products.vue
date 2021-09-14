@@ -13,6 +13,8 @@
             <div class="dados" id="descricao"><strong> Descrição </strong></div>
             <div class="dados" id="amount"><strong> Quantidade </strong></div>
             <div class="dados" id="price"><strong> Preço </strong></div>
+            <div class="dados" id="action"><strong> Ação </strong></div>
+
             <hr />
           </li>
         </ul>
@@ -25,6 +27,13 @@
             <div class="dados" id="name">{{ dado.name }}</div>
             <div class="dados" id="amount">{{ dado.amount }}</div>
             <div class="dados" id="price">{{ conversaoValor(dado.price) }}</div>
+            <div class="dados" id="action"> 
+                <router-link v-bind:to="{name:'update', params: {id: dado.id}}" > 
+
+                    <button class="bybt"> up </button>
+                </router-link>
+            </div>
+
             <hr />
           </li>
         </ul>

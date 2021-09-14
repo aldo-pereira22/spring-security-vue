@@ -29,7 +29,13 @@ const routes = [
     path: '/products-register',
     name: 'products-register',
     component: () => import('../pages/products/ProductsRegister.vue')
+  },
+  {
+    path: '/update',
+    name: 'update',
+    component: () => import('../pages/products/ProductsUpdate.vue')
   }
+
 ]
 
 const router = new VueRouter({
