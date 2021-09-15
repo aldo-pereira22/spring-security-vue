@@ -5,7 +5,7 @@
       <div class="alert alert-success" v-if="ok">
         <h4>Dados atualizados com Sucesso!</h4>
       </div>
-      <div v-else >
+      <div v-else-if="error" >
         <h4> {{message}} </h4>
       </div>
       <div class="form">
@@ -43,8 +43,9 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
-      message: '',
-      ok: false
+      message: 'error',
+      ok: false,
+      error: false
     };
   },
   computed: {
@@ -63,8 +64,10 @@ export default {
       try {
         await  this.updateProducts(update);
         this.ok = true;
+        await this.findProductById(produto.id);
       } catch (error) {
-        error.data ? this.message =  error.data.message : this.message =  'Não foi possível a atualização'
+        error.data ? this.message =  error.data.message : this.message =  'Não foi possível a atualização';
+        this.error  = true
       }
     }
   },
