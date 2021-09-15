@@ -36,15 +36,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 		.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/users", "/login").permitAll()
-		.antMatchers(HttpMethod.GET, "/products","/categories").permitAll()
-		.antMatchers(HttpMethod.POST, "/products", "/categories").permitAll()
-		.antMatchers(HttpMethod.DELETE, "/products", "/categories").permitAll()
+		.antMatchers(HttpMethod.GET, "/products/**","/categories").permitAll()
+		.antMatchers(HttpMethod.PUT, "/products/**","/categories").permitAll()
+		.antMatchers(HttpMethod.POST, "/products/**", "/categories").permitAll()
+		.antMatchers(HttpMethod.DELETE, "/products/**", "/categories").permitAll()
 		.anyRequest().authenticated()
 		.and().cors() 
 		.and().exceptionHandling()
 		.authenticationEntryPoint(jwtAuthenticationEntryPoint)
 		.and().sessionManagement()
-		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
 		http.addFilterBefore(jwtRequest, UsernamePasswordAuthenticationFilter.class);
 		
 	}

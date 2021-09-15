@@ -35,7 +35,7 @@ public class ProductController {
 	}
 	
 	
-	
+	@CrossOrigin
 	@GetMapping(path = {"/{id}"})
 	public ResponseEntity<?> findById(@PathVariable Long id){
 		Product list = service.findById(id);
