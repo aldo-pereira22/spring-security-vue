@@ -12,6 +12,9 @@ export default {
     },
     [types.UPDATE_PRODUCTS](state,payload){
         state.products = payload;
+    },
+    [types.DELETE_PRODUCTS](state,payload){
+        state.products = payload;
     }
 }
 

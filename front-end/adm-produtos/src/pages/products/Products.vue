@@ -30,8 +30,9 @@
             <div class="dados" id="action"> 
                 <router-link v-bind:to="{name:'update', params: {id: dado.id}}" > 
 
-                    <button class="bybt"> up </button>
+                    <button class="btn btn-primary"> up </button>
                 </router-link>
+                <button v-on:click="exluirProduto(dado.id)" class="btn btn-danger ml-3"> X</button>
             </div>
 
             <hr />
@@ -52,10 +53,20 @@ export default {
     };
   },
   methods: {
-    ...mapActions("products", ["getProducts"]),
+    ...mapActions("products", ["getProducts", "deleteProducts" ]),
     conversaoValor(valor) {
       return "R$ " + valor.toFixed(2);
     },
+
+    async exluirProduto(id){
+      try{
+        await this.deleteProducts(id);
+        // this.getProducts();
+        this.$router.go();
+      }catch(e){
+        alert('Não foi possível excluir'+ e)
+      }
+    }
   },
   computed: {
     ...mapState(["products"]),
