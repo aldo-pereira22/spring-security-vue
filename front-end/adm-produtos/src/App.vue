@@ -1,6 +1,13 @@
 <template>
   <div id="app">
     <div id="nav">
+      <div class="login">
+        <router-link to="/">
+          <buttton class="btn btn-primary btn-sm">Login</buttton>
+        </router-link>
+
+      </div>
+
       <Menu />
       <hr>
 
@@ -31,19 +38,10 @@ export default {
 }
 
 #nav {
-  padding: 30px;
+  
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-  hr {
-    border-bottom: 1.4px solid ;
-  }
+
 
 }
 </style>
