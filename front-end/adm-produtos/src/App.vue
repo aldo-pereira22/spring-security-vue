@@ -2,10 +2,16 @@
   <div id="app">
     <div id="nav">
       <div class="login">
-        <router-link to="/">
-          <buttton class="btn btn-primary btn-sm">Login</buttton>
-        </router-link>
+        <div class="buttons">
 
+          <router-link to="/login">
+            <buttton class="btn btn-primary btn-sm mr-3">Login</buttton>
+          </router-link>
+          <router-link clas="link ml-3 mt-2" to="">
+              <h6>Cadastro</h6>
+          </router-link>
+
+        </div>
       </div>
 
       <Menu />
@@ -27,8 +33,7 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -37,11 +42,21 @@ export default {
   color: #2c3e50;
 }
 
-#nav {
-  
+
+.login {
+  width: 100%;
+  background-color: #dceaf8;
 
 
+}
+.buttons{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 4%;
 
-
+}
+.link{
+  text-decoration: none;
 }
 </style>
