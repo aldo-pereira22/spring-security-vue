@@ -7,7 +7,7 @@
           <router-link to="/login">
             <buttton class="btn btn-primary btn-sm mr-3">Login</buttton>
           </router-link>
-          <router-link clas="link ml-3 mt-2" to="">
+          <router-link id="link" clas="link ml-3 mt-2" to="">
               <h6>Cadastro</h6>
           </router-link>
 
@@ -34,6 +34,7 @@ export default {
 }
 </script>
 <style scoped>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -56,7 +57,16 @@ export default {
   margin-right: 4%;
 
 }
-.link{
+
+.link {
   text-decoration: none;
 }
+.btn {
+  margin: 10px;
+}
+
+#link {
+  text-decoration: none;
+}
+
 </style>
