@@ -10,7 +10,7 @@
 
         <div class="row">
           <label for=""> Preço </label>
-          <input v-model="form.price" type="text" />
+          <input v-model="price" v-money="money" type="text" />
         </div>
 
         <div class="row">
@@ -28,24 +28,36 @@
 
 <script>
 import { mapActions } from "vuex";
+import {VMoney} from 'v-money'
 export default {
+  directives: {money:VMoney},
   data() {
     return {
       form: {
         name: "",
-        amount: "",
-        price: "",
+        amount: ""
       },
+      price: 0,
+      money: {
+        decimal:',',
+        thousands: '.',
+        prefix: 'R$ ',
+        suffix: '',
+        precision:2,
+        masked: false
+      }
     };
   },
   methods: {
     ...mapActions('products', ['addProducts']),
 
     addProdutos(add) {
+      this.price = this.price.replace(/\./g, '')
+      this.price = this.price.slice(3).replace(',', '.')
       add = {
         name: this.form.name,
         amount: this.form.amount,
-        price: this.form.price,
+        price: this.price,
       }
       this.addProducts(add)
 
