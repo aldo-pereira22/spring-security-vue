@@ -30,9 +30,11 @@
             <div class="dados" id="action"> 
                 <router-link v-bind:to="{name:'update', params: {id: dado.id}}" > 
 
-                    <button class="btn btn-primary"> up </button>
+                    <button id="edit" class="btn btn-primary"> <i class="fas fa-edit">  </i> </button>
                 </router-link>
-                <button v-on:click="exluirProduto(dado.id)" class="btn btn-danger ml-3"> X</button>
+                <button v-on:click="exluirProduto(dado.id)" class="btn btn-danger ml-3"> 
+                  <strong> X </strong>
+                </button>
             </div>
 
             <hr />
@@ -130,6 +132,10 @@ ul li {
 .link {
     text-decoration: none;
     color:white;
+}
+
+#edit {
+  margin: 5px;
 }
 </style>>
 
