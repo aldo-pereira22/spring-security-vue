@@ -57,7 +57,13 @@ export default {
   methods: {
     ...mapActions("products", ["getProducts", "deleteProducts" ]),
     conversaoValor(valor) {
-      return "R$ " + valor.toFixed(2);
+        if(valor){
+          let valorFinal = new Intl.NumberFormat("pt-BR", {style:'currency', currency:'BRL'}).format(valor)
+          return valorFinal;
+        }else {
+          return "R$ ----";
+        }
+
     },
 
     async exluirProduto(id){

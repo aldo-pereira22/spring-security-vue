@@ -10,6 +10,12 @@
       <div class="dados"> {{ category.name }} </div>
 
     </div>
+
+    <div class="row" v-for="produto in products.products" :key="produto.id">
+      <div class="produtos" v-if="produto.category">
+        {{produto}}
+      </div>
+    </div>
     <!-- <div class="vuex"> -->
 
       <!-- <button v-on:click="addCount" >+</button>
@@ -51,16 +57,19 @@ export default {
     //   this.$store.commit('decrements')
     // },
     // ...mapActions(['addProdutos'])
-   ...mapActions(['getCategories'])
+   ...mapActions(['getCategories']),
+   ...mapActions(['getProducts'])
+
 
   },
   created(){
     // this.getCategories();
-      this.getCategories()
+      this.getCategories(),
+      this.getProducts()
   },
   computed:{
 
-    ...mapState([ 'categories'])
+    ...mapState([ 'categories', 'products'])
   }
 
 }
@@ -99,5 +108,9 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>
