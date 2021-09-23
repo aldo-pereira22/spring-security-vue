@@ -14,7 +14,9 @@
 
         <div class="row">
           <label for=""> Preço </label>
-          <input v-model="price" v-money="money" type="text" />
+          <!-- <input v-model="price" v-money="money" type="text" /> -->
+          <input v-model.lazy="price" v-money="money" type="text" />
+
         </div>
 
 

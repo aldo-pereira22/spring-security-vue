@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="row" v-for="produto in products.products" :key="produto.id">
-        <div class="produtos" v-if="produto.category">
+        <div class="produtos" v-if="produto.category" >
           <ul v-if="produto.category.id == productId && category.id == productId">
             <li>
               {{ produto.name }}
@@ -89,6 +89,7 @@ export default {
 }
 
 ul {
+  width: 100%;
   list-style: none;
 }
 
@@ -101,6 +102,7 @@ ul {
 }
 
 .produtos {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

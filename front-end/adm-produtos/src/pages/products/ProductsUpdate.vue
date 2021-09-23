@@ -17,7 +17,7 @@
 
           <div class="row">
             <label for=""> Preço </label>
-            <input v-model="produto.price" type="text" />
+            <input v-model.lazy="produto.price" v-money="money" type="text" />
           </div>
 
           <div class="row">
@@ -39,13 +39,24 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import { VMoney } from "v-money";
+
 export default {
+   directives: { money: VMoney },
   data() {
     return {
       id: this.$route.params.id,
       message: 'error',
       ok: false,
-      error: false
+      error: false,
+      money: {
+        decimal: ",",
+        thousands: ".",
+        prefix: "R$ ",
+        suffix: "",
+        precision: 2,
+        masked: false,
+      },
     };
   },
   computed: {

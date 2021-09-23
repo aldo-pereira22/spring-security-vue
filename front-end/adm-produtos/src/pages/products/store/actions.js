@@ -26,6 +26,7 @@ export const findProductById = ( { commit }, id) => {
     Axios.get('http://localhost:8080/products/' + id,{headers})
     .then(resp => {
         commit(types.FIND_PRODUCTS, resp.data);
+        console.log(resp.data.price)
     })
 }
 
