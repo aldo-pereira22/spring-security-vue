@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
 
 @Entity
@@ -23,6 +26,8 @@ public class Users implements Serializable {
 	private String username;
 	private String password;
 	
+	@JsonInclude(Include.NON_NULL)
+	private String token;
 	
 	public Users() {
 		// TODO Auto-generated constructor stub
@@ -30,11 +35,24 @@ public class Users implements Serializable {
 
 
 
-	public Users(Long id, String username, String password) {
+	public Users(Long id, String username, String password, String token) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.token = token;
+	}
+
+
+
+	public String getToken() {
+		return token;
+	}
+
+
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 

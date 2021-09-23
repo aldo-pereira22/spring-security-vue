@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,8 +23,8 @@ import com.example.demo.security.JwtuserDetailsService;
 public class JwtAuthenticateControllers {
 
 	private List<Users> usuarios = new ArrayList<>();
-	
 	private String token;
+	private Long id;
 	
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
@@ -40,7 +41,7 @@ public class JwtAuthenticateControllers {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String createAuthenticateToken(@RequestBody Users authenticateRequest) {
+	public Optional<Users> createAuthenticateToken(@RequestBody Users authenticateRequest) {
 		
 		usuarios = repository.findAll();
 		
@@ -53,11 +54,16 @@ public class JwtAuthenticateControllers {
 				System.out.println(userDetails);
 			
 				this.token = jwtTokenUtil.generateToken(userDetails);
+				this.id = usuario.getId();
+//				return this.token;
 
-				return this.token;
 			}
 		}
-		return "Error";
+		Optional<Users> obj = null;
+		obj = repository.findById(this.id);
+		obj.orElseThrow().setToken(token);
+		obj.orElseThrow().setPassword("");
+		return obj;
 	}
 }
 
