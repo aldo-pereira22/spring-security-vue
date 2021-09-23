@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import com.example.demo.entities.Users;
 import com.example.demo.repositories.UsersRepository;
 import com.example.demo.security.JwtTokenUtil;
 import com.example.demo.security.JwtuserDetailsService;
+import com.example.demo.security.requests.JwtRequest;
 
 @CrossOrigin
 @RestController
@@ -31,25 +34,27 @@ public class JwtAuthenticateControllers {
 	
 	@Autowired
 	private UsersRepository repository;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
+//	
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
+//	
 	
 	@Autowired
 	private JwtuserDetailsService jwtUserDetailsService;
 	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
 	@CrossOrigin
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public Optional<Users> createAuthenticateToken(@RequestBody Users authenticateRequest) {
-		
+	public Optional<Users> createAuthenticateToken(@RequestBody JwtRequest authenticateRequest) throws Exception {
 		usuarios = repository.findAll();
 		
 		for(Users usuario : usuarios) {
 			System.out.println(usuario.getPassword());
-			if( usuario.getUsername().equals(authenticateRequest.getUsername())
-				&& passwordEncoder.matches(authenticateRequest.getPassword(), usuario.getPassword()) ) {
+			if( usuario.getUsername().equals(authenticateRequest.getUsername())) {
 				
+				authenticate(authenticateRequest.getUsername(), authenticateRequest.getPassword());
 				final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(usuario.getUsername());
 				System.out.println(userDetails);
 			
@@ -64,6 +69,17 @@ public class JwtAuthenticateControllers {
 		obj.orElseThrow().setToken(token);
 		obj.orElseThrow().setPassword("");
 		return obj;
+	}
+	
+	private void authenticate(String username, String password) throws Exception{
+		System.out.println(username + " "+password);
+		try {
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+		} catch (DisabledException e) {
+			throw new Exception("USER_DISABLED", e);
+		}catch (BadCredentialsException e) {
+			throw new Exception("INVALID_CREDENTIALS", e);
+		}
 	}
 }
 
