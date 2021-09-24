@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,10 +36,10 @@ public class JwtAuthenticateControllers {
 	
 	@Autowired
 	private UsersRepository repository;
-//	
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
-//	
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	
 	@Autowired
 	private JwtuserDetailsService jwtUserDetailsService;
@@ -52,9 +54,11 @@ public class JwtAuthenticateControllers {
 		
 		for(Users usuario : usuarios) {
 			System.out.println(usuario.getPassword());
-			if( usuario.getUsername().equals(authenticateRequest.getUsername())) {
+			if( usuario.getUsername().equals(authenticateRequest.getUsername())
+					&& passwordEncoder.matches(authenticateRequest.getPassword(), usuario.getPassword()) ) {
+//				authenticate(authenticateRequest.getUsername(), authenticateRequest.getPassword());
 				
-				authenticate(authenticateRequest.getUsername(), authenticateRequest.getPassword());
+
 				final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(usuario.getUsername());
 				System.out.println(userDetails);
 			

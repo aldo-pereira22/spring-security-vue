@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	
 	@Autowired
-	private JwtRequestFilter jwtRequest;
+	private JwtRequestFilter jwtRequestFilter =null;
 	
 	
 	@CrossOrigin
@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.authenticationEntryPoint(jwtAuthenticationEntryPoint)
 		.and().sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
-		http.addFilterBefore(jwtRequest, UsernamePasswordAuthenticationFilter.class);
+		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		
 	}
 	
