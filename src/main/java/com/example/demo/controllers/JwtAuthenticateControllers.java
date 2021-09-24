@@ -49,7 +49,7 @@ public class JwtAuthenticateControllers {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public Optional<Users> createAuthenticateToken(@RequestBody JwtRequest authenticateRequest) throws Exception {
+	public Optional<Users> createAuthenticateToken(@RequestBody Users authenticateRequest) throws Exception {
 		usuarios = repository.findAll();
 		
 		for(Users usuario : usuarios) {

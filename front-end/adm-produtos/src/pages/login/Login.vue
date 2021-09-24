@@ -29,7 +29,9 @@ export default {
       console.log(dados)
       Axios.post('http://localhost:8080/login', dados)
       .then(response => {
-        localStorage.setItem('token', response.data);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('username', response.data.username);
+
         this.$router.push('/')
       })
     }
