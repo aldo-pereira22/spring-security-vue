@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import Axios from 'axios'
+import Axios from 'axios';
+import {mapActions} from 'vuex'
 export default {
   data(){
     return {
@@ -21,6 +22,7 @@ export default {
     }
   },
   methods:{
+    ...mapActions('user', ['setUserLogin']),
     enviarDadosLogin(){
       const dados = {
         username:this.username,
@@ -31,9 +33,9 @@ export default {
       .then(response => {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('username', response.data.username);
-
-        this.$router.push('/')
+        this.setUserLogin();
       })
+        this.$router.push('/')
     }
   }
 };

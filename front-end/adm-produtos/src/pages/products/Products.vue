@@ -55,7 +55,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions("products", ["getProducts", "deleteProducts" ]),
+    ...mapActions("x", ["getProducts", "deleteProducts" ]),
     conversaoValor(valor) {
         if(valor){
           let valorFinal = new Intl.NumberFormat("pt-BR", {style:'currency', currency:'BRL'}).format(valor)
