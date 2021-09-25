@@ -1,22 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <div class="login">
-        <div class="buttons">
-          <router-link to="/login">
-            <button class="btn btn-primary btn-sm mr-3">Login</button>
-          </router-link>
-
-          <router-link to="/login">
-            <button class="btn btn-primary btn-sm mr-3">Logout</button>
-          </router-link>
-
-          <router-link id="link" clas="link ml-3 mt-2" to="">
-            <h6>Cadastro</h6>
-          </router-link>
-        </div>
-      </div>
-
+      
+      <MenuLogin />
       <Menu />
       <hr />
     </div>
@@ -27,15 +13,17 @@
 
 <script>
 import Menu from "./components/Menu.vue";
+import MenuLogin from "./components/MenuLogin.vue";
 
 export default {
   components: {
     Menu,
+    MenuLogin
   },
 };
 </script>
 <style scoped>
-#app {
+/* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -63,5 +51,5 @@ export default {
 
 #link {
   text-decoration: none;
-}
+} */
 </style>
