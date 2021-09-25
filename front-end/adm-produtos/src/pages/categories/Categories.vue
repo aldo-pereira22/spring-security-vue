@@ -53,8 +53,8 @@ export default {
     //   this.$store.commit('decrements')
     // },
     // ...mapActions(['addProdutos'])
-    ...mapActions(["getCategories"]),
-    ...mapActions(["getProducts"]),
+    ...mapActions("categories",["getCategories"]),
+    ...mapActions("products",["getProducts"]),
     mostraProdutos(id) {
       id != this.productId ? (this.productId = id) : (this.productId = "");
     

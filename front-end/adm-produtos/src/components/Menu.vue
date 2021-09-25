@@ -5,29 +5,29 @@
 
       <router-link to="/about"> <li>Sobre nós</li> </router-link>
 
-      <router-link v-if="session || token" to="/categories"> <li>Categories</li> </router-link>
+      <router-link v-if="this.session || token" to="/categories"> <li>Categories</li> </router-link>
 
-      <router-link v-if="session || token" to="/products"> <li>Products</li> </router-link>
+      <router-link v-if="this.session || token" to="/products"> <li>Products</li> </router-link>
     </ul>
 
-
+    {{username}}
   </div>
 </template>
 
 <script>
 export default {
   data(){
-    return {
+    return{
       session:false
     }
   },
-  computed:{
+  computed: {
     username(){
       return localStorage.username
     },
+
     token(){
-      // return localStorage.token
-      return this.$store.state.user.user.token;
+      return this.$store.state.user.user.token
     }
   },
   mounted(){

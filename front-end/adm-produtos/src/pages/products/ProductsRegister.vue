@@ -27,7 +27,6 @@
             <option value="2">Papelaria</option>
             <option value="3">Cosmeticos</option>
             <option value="4">Vestuário</option> 
-        
           </select>
         </div>
 

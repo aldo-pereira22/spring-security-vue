@@ -4,11 +4,11 @@
       <div class="login">
         <div class="buttons">
           <router-link to="/login">
-            <buttton class="btn btn-primary btn-sm mr-3">Login</buttton>
+            <button class="btn btn-primary btn-sm mr-3">Login</button>
           </router-link>
 
           <router-link to="/login">
-            <buttton class="btn btn-primary btn-sm mr-3">Logout</buttton>
+            <button class="btn btn-primary btn-sm mr-3">Logout</button>
           </router-link>
 
           <router-link id="link" clas="link ml-3 mt-2" to="">

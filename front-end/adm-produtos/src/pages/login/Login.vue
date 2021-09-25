@@ -17,8 +17,8 @@ import {mapActions} from 'vuex'
 export default {
   data(){
     return {
-      username:'',
-      password:''
+      username:"",
+      password:""
     }
   },
   methods:{
@@ -31,8 +31,8 @@ export default {
       console.log(dados)
       Axios.post('http://localhost:8080/login', dados)
       .then(response => {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('username', response.data.username);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("username", response.data.username);
         this.setUserLogin();
       })
         this.$router.push('/')

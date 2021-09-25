@@ -1,23 +1,21 @@
 export default{
+    
     state:{
-        user:{
-            username:'',
-            token:''
-        }
+        user: { username:'',token:'' }
     },
-
-    mutations: {
-        setUser(state,payload){
+    mutations:{
+        setUser(state, payload){
             state.user = payload;
         }
     },
     actions: {
-        setUserLogin( {commit}){
+        setUserLogin( { commit } ){
             var username = localStorage.getItem('username');
-            var token = localStorage.getItem('token')
-            const userLogin = {username:username, token:token}
-            commit('setUser',userLogin)
+            var token = localStorage.getItem('token');
+            const userLogin = {username: username, token: token}
+            commit('setUser', userLogin)
         }
     },
     namespaced:true
+
 }
