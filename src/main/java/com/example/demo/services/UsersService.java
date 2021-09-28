@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -30,10 +31,10 @@ public class UsersService {
 	}
 	
 	
-	public ResponseEntity<?> findById( Long id){
-		return repository.findById(id)
-				.map(response -> ResponseEntity.ok().body(response))
-				.orElse(ResponseEntity.notFound().build());
+	public Users findById( Long id){
+		Optional<Users> obj = repository.findById(id);
+		return obj.get();
+
 	}
 	
 
