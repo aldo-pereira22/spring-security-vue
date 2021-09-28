@@ -1,16 +1,19 @@
 <template>
   <div class="main">
     <div class="login">
+      <div v-if="token || session" class="saudacao mr-4 mt-3">
+        <h6>Bem Vindo {{username}}! </h6>
+      </div>
       <div class="buttons">
-        <router-link  to="/login" v-if="!token" >
+        <router-link  to="/login" v-if="!token && !session" >
           <button class="btn btn-primary btn-sm mr-3">Login</button>
         </router-link>
 
-        <button v-if="token" @click="resetLogin" class="btn btn-primary btn-sm mr-3">
+        <button v-if="token || session" @click="resetLogin" class="btn btn-primary btn-sm mr-3">
           Logout
         </button>
 
-        <router-link id="link" clas="link ml-3 mt-2" to="">
+        <router-link v-if="!token && !session" id="link" clas="link ml-3 mt-2" to="/cadastro">
           <h6>Cadastro</h6>
         </router-link>
       </div>
@@ -57,7 +60,15 @@ export default {
   color: #2c3e50;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
 .login {
+  display: flex;
+  justify-content: flex-end;
   width: 100%;
   background-color: #dceaf8;
 }
@@ -77,5 +88,8 @@ export default {
 
 #link {
   text-decoration: none;
+}
+.saudacao {
+  color: rgb(77, 77, 250);
 }
 </style>

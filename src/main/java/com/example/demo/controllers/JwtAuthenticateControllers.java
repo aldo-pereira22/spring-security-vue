@@ -36,10 +36,8 @@ public class JwtAuthenticateControllers {
 	
 	@Autowired
 	private UsersRepository repository;
-	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
 	
 	@Autowired
 	private JwtuserDetailsService jwtUserDetailsService;
@@ -49,7 +47,7 @@ public class JwtAuthenticateControllers {
 	
 	@CrossOrigin
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public Optional<Users> createAuthenticateToken(@RequestBody Users authenticateRequest) throws Exception {
+	public Optional<Users> createAuthenticateToken(@RequestBody JwtRequest authenticateRequest) throws Exception {
 		usuarios = repository.findAll();
 		
 		for(Users usuario : usuarios) {
@@ -68,6 +66,7 @@ public class JwtAuthenticateControllers {
 
 			}
 		}
+		
 		Optional<Users> obj = null;
 		obj = repository.findById(this.id);
 		obj.orElseThrow().setToken(token);
@@ -76,8 +75,10 @@ public class JwtAuthenticateControllers {
 	}
 	
 	private void authenticate(String username, String password) throws Exception{
-		System.out.println(username + " "+password);
+//		System.out.println(username + " "+password);
+	
 		try {
+			System.out.println("AQUII");
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		} catch (DisabledException e) {
 			throw new Exception("USER_DISABLED", e);

@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	@Override
-	public AuthenticationManager authenticationManager()throws Exception{
+	public AuthenticationManager authenticationManagerBean()throws Exception{
 		return super.authenticationManagerBean();
 	}
 	
@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	
 	@Autowired
-	private JwtRequestFilter jwtRequestFilter =null;
+	private JwtRequestFilter jwtRequestFilter;
 	
 	
 	@CrossOrigin

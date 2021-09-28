@@ -7,6 +7,7 @@
       <label for="password">Password:</label>
       <input v-model="password" type="password">
       <button v-on:click="enviarDadosLogin" name="password" class="btn btn-primary">Login</button>
+      <span class="mt-4"> <a href="#">Esqueceu sua senha?</a> </span>
     </div>
   </div>
 </template>
