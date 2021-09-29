@@ -1,3 +1,4 @@
+import Axios from 'axios'
 export default{
     
     state:{
@@ -6,6 +7,9 @@ export default{
     mutations:{
         setUser(state, payload){
             state.user = payload;
+        },
+        usersRegisterM(state, payload){
+            state.user = payload
         }
     },
     actions: {
@@ -14,8 +18,25 @@ export default{
             var token = localStorage.getItem('token');
             const userLogin = {username: username, token: token}
             commit('setUser', userLogin)
-        }
+        },
+            // eslint-disable-next-line no-empty-pattern
+        emailConfirmed({}, email){
+            Axios.post('http://localhost:8080/email', email).then(resp => {
+                const result = resp.data;
+                console.log(result)
+            })
+        },
+        usersRegisterAction( { commit }, user) {
+            Axios.post('http://localhost:8080/users', user).then(resp =>{
+                const result = resp.data;
+                commit('usersRegisterM', result)
+            })          
+       }
     },
-    namespaced:true
 
+
+
+
+
+    namespaced:true
 }

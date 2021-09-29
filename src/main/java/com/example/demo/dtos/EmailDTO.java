@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmailDTO {
 
-	private String emailTO;
+	private String emailTo;
 	private String subject;
 	private String text;
 	
@@ -16,19 +16,19 @@ public class EmailDTO {
 
 
 	public EmailDTO(String emailTO, String subject, String text) {
-		this.emailTO = emailTO;
+		this.emailTo = emailTO;
 		this.subject = subject;
 		this.text = text;
 	}
 
 
 	public String getEmailTO() {
-		return emailTO;
+		return emailTo;
 	}
 
 
 	public void setEmailTO(String emailTO) {
-		this.emailTO = emailTO;
+		this.emailTo = emailTO;
 	}
 
 

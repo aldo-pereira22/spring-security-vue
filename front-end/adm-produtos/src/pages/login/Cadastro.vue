@@ -4,13 +4,14 @@
       <h2>Adicione seus dados</h2>
       <label for="email">E-mail</label>
       <input v-model="email" type="email" />
+
       <label for="username">username</label>
       <input v-model="username" type="text" />
+
       <label for="password">Password:</label>
       <input v-model="password" type="password" />
       <button
-        v-on:click="enviarDadosLogin"
-        name="password"
+        v-on:click="enviarDadosCadastro"
         class="btn btn-primary"
       >
         Cadastrar
@@ -20,7 +21,44 @@
 </template>
 
 <script>
-export default {};
+import {mapState, mapActions} from 'vuex'
+export default {
+  data(){
+    return {
+      email:"",
+      username:"",
+      password:""
+    }
+  },
+  computed: {
+    ...mapState(["user"])
+  },
+  methods:{
+    ...mapActions('user',["usersRegisterAction", "emailConfirmed"]),
+    async enviarDadosCadastro(){
+
+      const user = {
+        email:this.email,
+        username:this.username,
+        password:this.password
+      }
+
+      await this.usersRegisterAction(user);
+
+      const email = {
+        emailTO: user.email,
+        subject: "Confirmação de Cadastro!",
+        text:`<td style="border-radius: 4px;background:#0095ff; color:white; text-align:center" >
+              <a href="http://localhost:8080/#/registration?${user.email}"> Confirmar cadastro </a>
+            </td>
+            `
+      }
+
+      await this.emailConfirmed(email);
+    }
+  }
+
+};
 </script>
 
 <style scoped>
