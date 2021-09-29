@@ -49,7 +49,7 @@ export default {
         emailTO: user.email,
         subject: "Confirmação de Cadastro!",
         text:`<td style="border-radius: 4px;background:#0095ff; color:white; text-align:center" >
-              <a href="http://localhost:8080/#/registration?${user.email}"> Confirmar cadastro </a>
+              <a href="http://localhost:8081/#/registration?${user.email}"> Confirmar cadastro </a>
             </td>
             `
       }

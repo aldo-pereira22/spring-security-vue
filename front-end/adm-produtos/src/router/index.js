@@ -46,15 +46,18 @@ const routes = [
     component: () => import('../pages/login/Cadastro.vue')
   },
   {
+    
     path: '/registration',
     name: 'registration',
     component: () => import('../pages/login/RegistrationConfirmed.vue')
+    
   }
 
 ]
 
-const router = new VueRouter({
-  routes
-})
+  const router = new VueRouter({
+    routes
+  })
+
 
 export default router
