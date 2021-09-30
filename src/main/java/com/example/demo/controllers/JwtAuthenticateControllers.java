@@ -62,15 +62,23 @@ public class JwtAuthenticateControllers {
 			
 				this.token = jwtTokenUtil.generateToken(userDetails);
 				this.id = usuario.getId();
-//				return this.token;
+				Optional<Users> obj = null;
+				obj = repository.findById(this.id);
+				obj.orElseThrow().setToken(token);
+				obj.orElseThrow().setPassword("");
+				return obj;
 
 			}
 		}
 		
+		this.id = (long)1;
 		Optional<Users> obj = null;
 		obj = repository.findById(this.id);
-		obj.orElseThrow().setToken(token);
+		obj.orElseThrow().setToken(null);
+		obj.orElseThrow().setId(null);
+		obj.orElseThrow().setEmail("Erro ao tentar logar");
 		obj.orElseThrow().setPassword("");
+		obj.orElseThrow().setUsername("Username ou Password incorretos!");
 		return obj;
 	}
 	
