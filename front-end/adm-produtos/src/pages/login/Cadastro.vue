@@ -1,6 +1,10 @@
 <template>
   <div class="main">
-    <div class="login">
+    <div v-if="confirmed" class="alert alert-success">
+      <h4>Email enviado!!!</h4>
+      <h4>Confira seu email para confirmar seu cadastro</h4>
+    </div>
+    <div v-if="!confirmed" class="login">
       <h2>Adicione seus dados</h2>
       <label for="email">E-mail</label>
       <input v-model="email" type="email" />
@@ -27,7 +31,8 @@ export default {
     return {
       email:"",
       username:"",
-      password:""
+      password:"",
+      confirmed:false
     }
   },
   computed: {
@@ -55,6 +60,7 @@ export default {
       }
 
       await this.emailConfirmed(email);
+      this.confirmed = true;
     }
   }
 
