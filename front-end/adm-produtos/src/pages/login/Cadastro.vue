@@ -53,8 +53,9 @@ export default {
       const email = {
         emailTO: user.email,
         subject: "Confirmação de Cadastro!",
-        text:`<td style="border-radius: 4px;background:#0095ff; color:white; text-align:center" >
-              <a href="http://localhost:8081/#/registration?${user.email}"> Confirmar cadastro </a>
+        text:`<h4> Confirmação de cadastro! </h4>
+              <td style="border-radius: 4px;background:#0095ff; color:white; text-align:center" >
+              <a href="http://localhost:8081/#/registration?email=${user.email}"> Confirmar cadastro </a>
             </td>
             `
       }
